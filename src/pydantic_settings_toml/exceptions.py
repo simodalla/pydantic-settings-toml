@@ -1,0 +1,2 @@
+class TomlSettingsError(ValueError):
+    pass

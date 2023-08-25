@@ -1,0 +1,115 @@
+[tool.poetry]
+name = "pydantic-settings-toml"
+version = "0.1.0"
+description = "Custom pydantic setting source for loading settings from toml files"
+authors = ["Simone Dalla <simodalla@gmail.com>"]
+license = 'MIT'
+readme = "README.md"
+packages = [{ include = "pydantic_settings_toml", from = "src" }]
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic-settings = "^2.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+default_section = "THIRDPARTY"
+known_first_party = ["pyadic_utils"]
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+skip_glob = ["**/migrations/*.py"]
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \._venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | migrations
+    | demo
+    | \.sh
+  )
+)
+'''
+
+[tool.ruff]
+# Docs: https://beta.ruff.rs/docs/
+# Rules: https://beta.ruff.rs/docs/rules/
+select = [
+    "B",
+    "C4",
+    "EXE",
+    "F",
+    "E",
+    "ISC",
+    "ICN",
+    "INP",
+    "PIE",
+    "SIM",
+    "W",
+    "T20",
+    "UP",
+    "T10",
+    "G",
+    "C90",
+    "ERA",
+]
+ignore = ["B008", "SIM102", "G004"]
+# unfixable = ["ALL" ]
+unfixable = ["ERA", "F401", "B", "F841"]
+fixable = [
+    "F",
+    "E",
+    "C4",
+    "EXE",
+    "ISC",
+    "ICN",
+    "INP",
+    "PIE",
+    "SIM",
+    "W",
+    "T20",
+    "UP",
+]
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".pre-commit-cache",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    "venv",
+    "docs",
+    "__pycache",
+    "**/migrations/*",
+]
+# Same as Black.
+line-length = 100
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+# Assume Python 3.11.
+target-version = "py311"
+src = ["src"]
+
+[tool.ruff.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
