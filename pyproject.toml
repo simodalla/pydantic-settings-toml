@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pydantic-settings-toml"
-version = "0.1.0"
+version = "0.2.0"
 description = "Custom pydantic setting source for loading settings from toml files"
 authors = ["Simone Dalla <simodalla@gmail.com>"]
 license = "MIT"
@@ -160,7 +160,7 @@ src = ["src"]
 max-complexity = 10
 
 [tool.bumpver]
-current_version = "0.1.0"
+current_version = "0.2.0"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "bump version {old_version} -> {new_version}"
 tag_message = "{new_version}"
