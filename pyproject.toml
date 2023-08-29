@@ -3,19 +3,65 @@ name = "pydantic-settings-toml"
 version = "0.1.0"
 description = "Custom pydantic setting source for loading settings from toml files"
 authors = ["Simone Dalla <simodalla@gmail.com>"]
-license = 'MIT'
+license = "MIT"
 readme = "README.md"
 packages = [{ include = "pydantic_settings_toml", from = "src" }]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Intended Audience :: System Administrators",
+  "License :: OSI Approved :: MIT License",
+  "Framework :: Pydantic",
+  "Framework :: Pydantic :: 2",
+  "Operating System :: Unix",
+  "Operating System :: POSIX :: Linux",
+  "Environment :: Console",
+  "Environment :: MacOS X",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Internet",
+]
+homepage = "https://github.com/simodalla/pydantic-settings-toml"
+repository = "https://github.com/simodalla/pydantic-settings-toml"
 
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.9"
 pydantic-settings = "^2.0.3"
 
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+isort = "^5.12.0"
+flake8-isort = "^6.0.0"
+coverage = "^7.3.0"
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pre-commit = "^3.3.3"
+mypy = "^1.5.1"
+ipython = "^8.14.0"
+pytest-sugar = "^0.9.7"
+bumpver = "^2023.1126"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+filterwarnings = [
+  "error",
+  "ignore:This is a placeholder until pydantic-settings-toml.*:UserWarning",
+]
+
 
 [tool.isort]
 profile = "black"
@@ -26,10 +72,9 @@ skip_glob = ["**/migrations/*.py"]
 
 [tool.black]
 line-length = 100
-target-version = ['py311']
+target-version = ["py311"]
 include = '\.pyi?$'
 exclude = '''
-
 (
   /(
       \.eggs         # exclude a few common directories in the
@@ -53,54 +98,54 @@ exclude = '''
 # Docs: https://beta.ruff.rs/docs/
 # Rules: https://beta.ruff.rs/docs/rules/
 select = [
-    "B",
-    "C4",
-    "EXE",
-    "F",
-    "E",
-    "ISC",
-    "ICN",
-    "INP",
-    "PIE",
-    "SIM",
-    "W",
-    "T20",
-    "UP",
-    "T10",
-    "G",
-    "C90",
-    "ERA",
+  "B",
+  "C4",
+  "EXE",
+  "F",
+  "E",
+  "ISC",
+  "ICN",
+  "INP",
+  "PIE",
+  "SIM",
+  "W",
+  "T20",
+  "UP",
+  "T10",
+  "G",
+  "C90",
+  "ERA",
 ]
 ignore = ["B008", "SIM102", "G004"]
 # unfixable = ["ALL" ]
 unfixable = ["ERA", "F401", "B", "F841"]
 fixable = [
-    "F",
-    "E",
-    "C4",
-    "EXE",
-    "ISC",
-    "ICN",
-    "INP",
-    "PIE",
-    "SIM",
-    "W",
-    "T20",
-    "UP",
+  "F",
+  "E",
+  "C4",
+  "EXE",
+  "ISC",
+  "ICN",
+  "INP",
+  "PIE",
+  "SIM",
+  "W",
+  "T20",
+  "UP",
 ]
 
 # Exclude a variety of commonly ignored directories.
 exclude = [
-    ".git",
-    ".mypy_cache",
-    ".pre-commit-cache",
-    ".ruff_cache",
-    ".tox",
-    ".venv",
-    "venv",
-    "docs",
-    "__pycache",
-    "**/migrations/*",
+  ".git",
+  ".mypy_cache",
+  ".pre-commit-cache",
+  ".ruff_cache",
+  ".tox",
+  ".venv",
+  "venv",
+  "docs",
+  "__pycache",
+  "**/migrations/*",
 ]
 # Same as Black.
 line-length = 100
@@ -113,3 +158,19 @@ src = ["src"]
 [tool.ruff.mccabe]
 # Unlike Flake8, default to a complexity level of 10.
 max-complexity = 10
+
+[tool.bumpver]
+current_version = "0.1.0"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "bump version {old_version} -> {new_version}"
+tag_message = "{new_version}"
+tag_scope = "default"
+pre_commit_hook = ""
+post_commit_hook = ""
+commit = true
+tag = true
+push = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
+"src/pydantic_settings_toml/version.py" = ["{version}"]
